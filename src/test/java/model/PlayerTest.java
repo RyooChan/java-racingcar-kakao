@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,53 +63,27 @@ public class PlayerTest {
     }
 
     @Test
-    void SplitPlayer2(){
-        String playerString="pobi,,honux";
-        String[] split = playerString.split(",");
-        List<Player> playerList = Player.getPlayer(split);
-
-        List<Player> expectedPlayerList = new ArrayList<>();
-        expectedPlayerList.add(new Player("pobi", Player.START_SCORE));
-        expectedPlayerList.add(new Player("", Player.START_SCORE));
-        expectedPlayerList.add(new Player("honux", Player.START_SCORE));
-
-        assertThat(playerList).isEqualTo(expectedPlayerList);
-    }
-    @Test
-    void SplitPlayer3(){
-        String playerString=",,honux";
-        String[] split = playerString.split(",");
-
-        assertThatExceptionOfType(IllegalArgumentException.class)
-            .isThrownBy(() -> {
-                Player.getPlayer(split);
-            }).withMessage("동일이름 안됨");
-
-    }
-
-    @Test
     void isGetPlayer_ShouldThrowIllegalArgumentExceptionWithOverFive(){
         String playerStr="longNamehaha";
-        String[] split = playerStr.split(",");
 
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> {
-                Player.getPlayer(split);
+                Player.validate(playerStr);
             }).withMessage("5자 이상 불가능");
     }
 
     @Test
-    void makeRanNumByStrList() {
+    void isMakeRanNumList_ShouldReturnRandomNumListByPlayerSize() {
         String playerString="pobi,crong,honux";
         String[] split = playerString.split(",");
         int expectedSize = split.length;
 
-        List<Integer> randomNumList = RandomGenerator.makeRanNumList(split);
+        List<Integer> randomNumList = RandomGenerator.makeRanNumList(split.length);
         assertThat(randomNumList.size()).isEqualTo(expectedSize);
     }
 
     @Test
-    void updatePlayerTest() {
+    void isUpdatePlayerList_ShouldReturnPlayerListWithUpdatedScore() {
         List<Integer> randomNumList = new ArrayList<>();
         randomNumList.add(4);
         randomNumList.add(2);
