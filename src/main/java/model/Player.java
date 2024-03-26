@@ -1,5 +1,6 @@
+package model;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -29,6 +30,12 @@ public class Player {
         return maxPlayers;
     }
 
+    public static List<String> getWinnerName(List<Player> playerList) {
+        return getWinner(playerList).stream().map(
+                     player -> player.name)
+            .collect(toList());
+    }
+
     private boolean isMaxScorePlayer(int maxScore) {
         return this.score == maxScore;
     }
@@ -41,18 +48,22 @@ public class Player {
     }
 
     public static List<Player> getPlayer(String[] playerNameList) {
-        validateUniquePlayer(playerNameList);
 
         return stream(playerNameList)
             .map(playerName -> {
-                validateUserNameLength(playerName);
                 return new Player(playerName, START_SCORE);
             })
             .collect(toList());
     }
 
-    private static void validateUniquePlayer(String[] playerNameList) {
-        HashSet<String> checker = new HashSet<>(asList(playerNameList));
+    public static void validate(String str) {
+        String[] playerNameList = str.split(",");
+        HashSet<String> checker = new HashSet<>();
+
+        for (String playerName : playerNameList) {
+            validatePlayerNameLength(playerName);
+            checker.add(playerName);
+        }
 
         if (checker.size() != playerNameList.length) {
             throw new IllegalArgumentException("동일이름 안됨");
@@ -60,7 +71,7 @@ public class Player {
 
     }
 
-    private static void validateUserNameLength(String str) {
+    private static void validatePlayerNameLength(String str) {
         if (str.length() > 5) {
             throw new IllegalArgumentException("5자 이상 불가능");
         }
@@ -84,6 +95,19 @@ public class Player {
         }
 
         return updatedPlayerList;
+    }
+
+    public static String makeCarPrint(Player player) {
+        String stringBuilder = player.name +
+            " : " +
+            makeDash(player.score);
+        return stringBuilder;
+
+    }
+
+    private static String makeDash(int playerScore) {
+        String dash = "-";
+        return dash.repeat(playerScore);
     }
 
     @Override
