@@ -11,10 +11,10 @@ public class RandomGenerator {
         return random.nextInt(10);
     }
 
-    public static List<Integer> makeRanNumList(int trialNum) {
+    public static List<Integer> makeRanNumList(int carSize) {
         List<Integer> randomNumList = new ArrayList<>();
 
-        for (int i=0; i<trialNum; i++) {
+        for (int i=0; i<carSize; i++) {
             randomNumList.add(makeRanNum());
         }
 

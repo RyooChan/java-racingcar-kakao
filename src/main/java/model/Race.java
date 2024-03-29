@@ -34,9 +34,9 @@ public class Race {
             .orElse(START_SCORE);
     }
 
-    public static void updateCarByNum(List<Car> initCarList, List<Integer> randomNumList) {
-        for (int i=0; i<initCarList.size(); i++) {
-            initCarList.get(i).updateCarScore(randomNumList.get(i));
+    public void updateCarByNum(List<Integer> randomNumList) {
+        for (int i=0; i<randomNumList.size(); i++) {
+            this.carList.get(i).updateCarScore(randomNumList.get(i));
         }
     }
 

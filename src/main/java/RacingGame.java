@@ -3,9 +3,9 @@ import java.util.List;
 
 import model.Car;
 import model.Race;
-import model.RandomGenerator;
 
 import static java.util.stream.Collectors.*;
+import static model.RandomGenerator.*;
 import static view.ResultView.printCars;
 
 public class RacingGame {
@@ -29,8 +29,9 @@ public class RacingGame {
     }
 
     public void race() {
-        List<Integer> ranNumList = RandomGenerator.makeRanNumList(tryNo);
-        Race.updateCarByNum(carList, ranNumList);
+        Race race = new Race(carList);
+        List<Integer> ranNumList = makeRanNumList(carList.size());
+        race.updateCarByNum(ranNumList);
         gameCount++;
     }
 

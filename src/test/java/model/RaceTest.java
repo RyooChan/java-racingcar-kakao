@@ -35,7 +35,8 @@ class RaceTest {
         Car car = new Car("name",0);
         int expectedScore = 1;
 
-        Race.updateCarByNum(of(car), of(num));
+        Race race = new Race(of(car));
+        race.updateCarByNum(of(num));
         assertThat(car.getScore()).isEqualTo(expectedScore);
     }
 
@@ -46,7 +47,8 @@ class RaceTest {
         Car car = new Car("name",0);
         int expectedScore = 0;
 
-        Race.updateCarByNum(of(car), of(num));
+        Race race = new Race(of(car));
+        race.updateCarByNum(of(num));
         assertThat(car.getScore()).isEqualTo(expectedScore);
     }
 
@@ -62,7 +64,8 @@ class RaceTest {
         carList.add(new Car("crong", 0));
         carList.add(new Car("honux", 0));
 
-        Race.updateCarByNum(carList, randomNumList);
+        Race race = new Race(carList);
+        race.updateCarByNum(randomNumList);
 
         List<Car> expectedCarList = new ArrayList<>();
         expectedCarList.add(new Car("pobi", 1));

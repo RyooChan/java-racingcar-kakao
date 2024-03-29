@@ -14,7 +14,7 @@ public class Car {
     private final String name;
 
     public Car(String name, int score) {
-        validate(name);
+        validateCarNameLength(name);
         this.name = name;
         this.score = score;
     }
@@ -28,22 +28,14 @@ public class Car {
     }
 
     public static List<Car> createCarFromNameList(String[] carNameList) {
+        DISTINCT_NAME_SET = new HashSet<>();
+
         return stream(carNameList)
-            .map(carName -> new Car(carName, START_SCORE))
+            .map(carName -> {
+                validateCarNameDuplicate(carName);
+                return new Car(carName, START_SCORE);
+            })
             .collect(toList());
-    }
-
-    public void validate(String carName) {
-        validateCarNameLength(carName);
-        validateCarNameDuplicate(carName);
-    }
-
-    private void validateCarNameDuplicate(String carName) {
-        if (DISTINCT_NAME_SET.contains(carName)) {
-            throw new IllegalArgumentException("동일 이름은 사용 불가능합니다.");
-        }
-
-        DISTINCT_NAME_SET.add(carName);
     }
 
     private void validateCarNameLength(String carName) {
@@ -52,6 +44,13 @@ public class Car {
         }
     }
 
+    public static void validateCarNameDuplicate(String carName) {
+        if (DISTINCT_NAME_SET.contains(carName)) {
+            throw new IllegalArgumentException("동일 이름은 사용 불가능합니다.");
+        }
+
+        DISTINCT_NAME_SET.add(carName);
+    }
 
     public void updateCarScore(int randomNum) {
         if (randomNum > 3){
