@@ -5,7 +5,6 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 import static model.Car.START_SCORE;
-import static model.Car.updateCarScore;
 
 public class Race {
     List<Car> carList = new ArrayList<>();
@@ -37,7 +36,7 @@ public class Race {
 
     public static void updateCarByNum(List<Car> initCarList, List<Integer> randomNumList) {
         for (int i=0; i<initCarList.size(); i++) {
-            updateCarScore(initCarList.get(i), randomNumList.get(i));
+            initCarList.get(i).updateCarScore(randomNumList.get(i));
         }
     }
 

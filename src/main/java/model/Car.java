@@ -53,9 +53,9 @@ public class Car {
     }
 
 
-    public static void updateCarScore(Car car, int randomNum) {
+    public void updateCarScore(int randomNum) {
         if (randomNum > 3){
-            car.score++;
+            this.score++;
         }
     }
 
