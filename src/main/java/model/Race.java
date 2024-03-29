@@ -7,7 +7,7 @@ import static java.util.stream.Collectors.toList;
 import static model.Car.START_SCORE;
 
 public class Race {
-    List<Car> carList = new ArrayList<>();
+    private List<Car> carList = new ArrayList<>();
 
     public Race(List<Car> carList) {
         this.carList = carList;
