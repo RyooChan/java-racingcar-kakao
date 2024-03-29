@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -28,7 +27,7 @@ public class Car {
         return score;
     }
 
-    public static List<Car> getCar(String[] carNameList) {
+    public static List<Car> createCarFromNameList(String[] carNameList) {
         return stream(carNameList)
             .map(carName -> new Car(carName, START_SCORE))
             .collect(toList());

@@ -12,10 +12,10 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 public class CarTest {
 
     @Test
-    void isGetCar_ShouldReturnSplitCarList(){
+    void isCreateCarFromNameList_ShouldReturnSplitCarList(){
         String carString="pobi,crong,honux";
         String[] split = carString.split(",");
-        List<Car> carList = Car.getCar(split);
+        List<Car> carList = Car.createCarFromNameList(split);
 
         List<Car> expectedCarList = new ArrayList<>();
         expectedCarList.add(new Car("pobi", Car.START_SCORE));
@@ -26,7 +26,7 @@ public class CarTest {
     }
 
     @Test
-    void isGetCar_ShouldThrowIllegalArgumentExceptionWithOverFive(){
+    void isCar_ShouldThrowIllegalArgumentExceptionWithOverFive(){
         String carStr="longNamehaha";
 
         assertThatExceptionOfType(IllegalArgumentException.class)
@@ -36,12 +36,12 @@ public class CarTest {
     }
 
     @Test
-    void isGetCar_ShouldThrowIllegalArgumentExceptionWithDuplicateName(){
+    void isCreateCarFromNameList_ShouldThrowIllegalArgumentExceptionWithDuplicateName(){
         String carStr="a,a,a";
 
         assertThatExceptionOfType(IllegalArgumentException.class)
             .isThrownBy(() -> {
-                Car.getCar(carStr.split(","));
+                Car.createCarFromNameList(carStr.split(","));
             }).withMessage("동일 이름은 사용 불가능합니다.");
     }
 }

@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import model.Car;
 import model.Race;
@@ -20,13 +19,13 @@ public class RacingGame {
     public RacingGame(String carNames, int tryNo) {
         this.carNames = carNames;
         this.tryNo = tryNo;
-        makeCar();
+        createCar();
         printCars(carList);
     }
 
-    private void makeCar() {
+    private void createCar() {
         String[] split = carNames.split(",");
-        carList = Car.getCar(split);
+        carList = Car.createCarFromNameList(split);
     }
 
     public void race() {
