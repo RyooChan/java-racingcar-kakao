@@ -33,28 +33,28 @@ public class Car {
             .collect(toList());
     }
 
-    public void validate(String str) {
-        validateCarNameLength(str);
-        validateCarNameDuplicate(str);
+    public void validate(String carName) {
+        validateCarNameLength(carName);
+        validateCarNameDuplicate(carName);
     }
 
-    private void validateCarNameDuplicate(String str) {
-        if (DISTINCT_NAME_SET.contains(str)) {
+    private void validateCarNameDuplicate(String carName) {
+        if (DISTINCT_NAME_SET.contains(carName)) {
             throw new IllegalArgumentException("동일 이름은 사용 불가능합니다.");
         }
 
-        DISTINCT_NAME_SET.add(str);
+        DISTINCT_NAME_SET.add(carName);
     }
 
-    private void validateCarNameLength(String str) {
-        if (str.length() > 5) {
+    private void validateCarNameLength(String carName) {
+        if (carName.length() > 5) {
             throw new IllegalArgumentException("차량 이름은 5자를 넘어서는 안됩니다.");
         }
     }
 
 
-    public static void updateCarScore(Car car, int num) {
-        if (num > 3){
+    public static void updateCarScore(Car car, int randomNum) {
+        if (randomNum > 3){
             car.score++;
         }
     }
