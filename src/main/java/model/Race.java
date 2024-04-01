@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
-import static model.Car.START_SCORE;
+import static model.CarFactory.START_SCORE;
 
 public class Race {
     private List<Car> carList = new ArrayList<>();

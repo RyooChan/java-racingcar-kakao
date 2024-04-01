@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Car;
+import model.CarFactory;
 import model.CarMove;
 import model.Race;
 
@@ -25,7 +26,7 @@ public class RacingGame {
 
     private void createCar() {
         String[] split = carNames.split(",");
-        carList = Car.createCarFromNameList(split);
+        carList = CarFactory.createCarFromNameList(List.of(split));
     }
 
     public void race() {
