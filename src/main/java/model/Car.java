@@ -9,6 +9,8 @@ import static java.util.stream.Collectors.toList;
 
 public class Car {
     private static HashSet<String> DISTINCT_NAME_SET = new HashSet<>();
+    private static final int MAX_CAR_NAME_LENGTH = 5;
+    private static final int CAR_MOVE_NUM = 3;
     public static final int START_SCORE = 1;
     private int score;
     private final String name;
@@ -39,7 +41,7 @@ public class Car {
     }
 
     private void validateCarNameLength(String carName) {
-        if (carName.length() > 5) {
+        if (carName.length() > MAX_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException("차량 이름은 5자를 넘어서는 안됩니다.");
         }
     }
@@ -53,17 +55,16 @@ public class Car {
     }
 
     public void updateCarScore(int randomNum) {
-        if (randomNum > 3){
+        if (randomNum > CAR_MOVE_NUM){
             this.score++;
         }
     }
 
     public static String makeCarPrint(Car car) {
-        String stringBuilder = car.getName() +
+
+        return car.getName() +
             " : " +
             makeDash(car.getScore());
-
-        return stringBuilder;
     }
 
     private static String makeDash(int carScore) {
