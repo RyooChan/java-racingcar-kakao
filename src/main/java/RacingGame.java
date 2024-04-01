@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Car;
+import model.CarMove;
 import model.Race;
 
 import static java.util.stream.Collectors.*;
-import static model.RandomGenerator.*;
 import static view.ResultView.printCars;
 
 public class RacingGame {
@@ -30,8 +30,7 @@ public class RacingGame {
 
     public void race() {
         Race race = new Race(carList);
-        List<Integer> ranNumList = makeRanNumList(carList.size());
-        race.updateCarByNum(ranNumList);
+        race.moveCar(new CarMove() {});
         gameCount++;
     }
 

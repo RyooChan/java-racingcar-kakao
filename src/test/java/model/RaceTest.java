@@ -31,47 +31,40 @@ class RaceTest {
 
     @ParameterizedTest
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
-    void isUpdateCarScore_ShouldIncreaseScoreGreaterOrEqualWithFour(int num) {
+    void isMoveCar_ShouldIncreaseScoreGreaterOrEqualWithFour(int num) {
         Car car = new Car("name",0);
-        int expectedScore = 1;
+
+        CarMove carMove = new CarMove() {
+            @Override
+            public int move() {
+                return num;
+            }
+        };
 
         Race race = new Race(of(car));
-        race.updateCarByNum(of(num));
-        assertThat(car.getScore()).isEqualTo(expectedScore);
+        race.moveCar(carMove);
+
+        Car expectedCar = new Car("name", 1);
+        assertThat(car).isEqualTo(expectedCar);
     }
 
 
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3})
-    void isUpdateCarScore_ShouldNotIncreaseScoreLessOrEqualWithThree(int num) {
+    void isMoveCar_ShouldNotIncreaseScoreLessOrEqualWithThree(int num) {
         Car car = new Car("name",0);
-        int expectedScore = 0;
+
+        CarMove carMove = new CarMove() {
+            @Override
+            public int move() {
+                return num;
+            }
+        };
 
         Race race = new Race(of(car));
-        race.updateCarByNum(of(num));
-        assertThat(car.getScore()).isEqualTo(expectedScore);
-    }
+        race.moveCar(carMove);
 
-    @Test
-    void isUpdateCarList_ShouldReturnCarListWithUpdatedScore() {
-        List<Integer> randomNumList = new ArrayList<>();
-        randomNumList.add(4);
-        randomNumList.add(2);
-        randomNumList.add(7);
-
-        List<Car> carList = new ArrayList<>();
-        carList.add(new Car("pobi", 0));
-        carList.add(new Car("crong", 0));
-        carList.add(new Car("honux", 0));
-
-        Race race = new Race(carList);
-        race.updateCarByNum(randomNumList);
-
-        List<Car> expectedCarList = new ArrayList<>();
-        expectedCarList.add(new Car("pobi", 1));
-        expectedCarList.add(new Car("crong", 0));
-        expectedCarList.add(new Car("honux", 1));
-
-        assertThat(carList).isEqualTo(expectedCarList);
+        Car expectedCar = new Car("name", 0);
+        assertThat(car).isEqualTo(expectedCar);
     }
 }

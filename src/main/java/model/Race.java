@@ -34,10 +34,9 @@ public class Race {
             .orElse(START_SCORE);
     }
 
-    public void updateCarByNum(List<Integer> randomNumList) {
-        for (int i=0; i<randomNumList.size(); i++) {
-            this.carList.get(i).updateCarScore(randomNumList.get(i));
-        }
+    public void moveCar(CarMove carMove) {
+        carList.forEach(
+            car -> car.updateCarScore(carMove.move())
+        );
     }
-
 }
