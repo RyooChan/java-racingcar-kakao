@@ -7,7 +7,6 @@ import model.CarMove;
 import model.Race;
 
 import static java.util.stream.Collectors.*;
-import static view.ResultView.printCars;
 
 public class RacingGame {
 
@@ -21,7 +20,6 @@ public class RacingGame {
         this.carNames = carNames;
         this.tryNo = tryNo;
         createCar();
-        printCars(carList);
     }
 
     private void createCar() {
