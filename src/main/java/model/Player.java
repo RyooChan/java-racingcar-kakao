@@ -30,12 +30,6 @@ public class Player {
         return maxPlayers;
     }
 
-    public static List<String> getWinnerName(List<Player> playerList) {
-        return getWinner(playerList).stream().map(
-                     player -> player.name)
-            .collect(toList());
-    }
-
     private boolean isMaxScorePlayer(int maxScore) {
         return this.score == maxScore;
     }
@@ -95,19 +89,6 @@ public class Player {
         }
 
         return updatedPlayerList;
-    }
-
-    public static String makeCarPrint(Player player) {
-        String stringBuilder = player.name +
-            " : " +
-            makeDash(player.score);
-        return stringBuilder;
-
-    }
-
-    private static String makeDash(int playerScore) {
-        String dash = "-";
-        return dash.repeat(playerScore);
     }
 
     @Override
