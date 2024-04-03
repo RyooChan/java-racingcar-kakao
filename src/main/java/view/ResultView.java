@@ -4,12 +4,15 @@ import java.util.List;
 import java.util.StringJoiner;
 
 import model.Car;
-import model.Race;
 
 public class ResultView {
     public static void printCars(List<Car> carList) {
         carList.forEach(
-            car -> System.out.println(Car.makeCarPrint(car))
+            car -> System.out.println(
+                car.getName() +
+                " : " +
+                "-".repeat(car.getScore())
+            )
         );
         System.out.println();
     }

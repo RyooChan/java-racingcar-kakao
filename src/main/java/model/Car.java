@@ -34,18 +34,6 @@ public class Car {
         }
     }
 
-    public static String makeCarPrint(Car car) {
-
-        return car.getName() +
-            " : " +
-            makeDash(car.getScore());
-    }
-
-    private static String makeDash(int carScore) {
-        String dash = "-";
-        return dash.repeat(carScore);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
